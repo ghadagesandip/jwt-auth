@@ -24,7 +24,7 @@
      "tests/**/*.ts",
      "index.js",
      "config/*.config.js" // for *.config.js files
-   ],
+, "src/modules/user/.model.ts"   ],
    "exclude": [
      "node_modules",
    ]

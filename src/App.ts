@@ -5,6 +5,7 @@ import * as helmet from 'helmet';
 import registerRoutes from './routes';
 import Environment from './environments/environment';
 import addErrorHandler from './middleware/error-handler';
+import * as mongoose from 'mongoose';
 
 export default class App {
     public express: express.Application;
@@ -20,6 +21,7 @@ export default class App {
     public async init(): Promise<void> {
         this.express = express();
         this.httpServer = http.createServer(this.express);
+        this.mongoSetup();
         this.middleware();
         this.routes();
         this.addErrorHandler();
@@ -53,4 +55,9 @@ export default class App {
     private addErrorHandler(): void {
         this.express.use(addErrorHandler);
     }
+
+    private async mongoSetup(): Promise<void> {
+        console.log('${process.env.MONGOURL}', this.env.connectionUrl)
+        await mongoose.connect(this.env.connectionUrl);
+      }
 }

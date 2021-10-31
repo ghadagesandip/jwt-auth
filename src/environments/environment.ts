@@ -5,7 +5,6 @@ import { EnvironmentFile, Environments } from './environment.constant';
 
 class Environment {
     public port: number;
-
     public connectionUrl: string;
 
     constructor(env?: string) {
